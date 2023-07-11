@@ -31,6 +31,7 @@ env:
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
+  DELECT_WORKFLOWRUNS: false
   TZ: Asia/Shanghai
 
 jobs:
@@ -177,6 +178,7 @@ jobs:
 
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
+      if: env.DELETE_WORKFLOWRUNS == 'true' && !cancelled()
       with:
         retain_days: 1
         keep_minimum_runs: 3
